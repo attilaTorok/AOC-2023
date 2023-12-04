@@ -1,4 +1,5 @@
 import dev.attilatorok.Day2_1;
+import dev.attilatorok.Day2_2;
 import dev.attilatorok.Utils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,7 @@ import java.io.IOException;
 public class Day2Test {
 
     private final Day2_1 app1 = new Day2_1();
+    private final Day2_2 app2 = new Day2_2();
 
     private String getLineWithoutGame(String line) {
         return line.split(":")[1];
@@ -47,6 +49,26 @@ public class Day2Test {
         try (BufferedReader reader = Utils.getBufferedReader("input/day2_first.txt")) {
             int expected = 2541;
             int actual = app1.getAnswer(reader);
+
+            Assertions.assertEquals(expected, actual);
+        }
+    }
+
+    @Test
+    public void getLeastNumberOfCubes1() throws IOException {
+        try (BufferedReader reader = Utils.getBufferedReader("test/day2_first.txt")) {
+            Day2_2.Cubes actual = app2.getLeastNumberOfCubes(getLineWithoutGame(reader.readLine()));
+            Day2_2.Cubes expected = new Day2_2.Cubes(4, 2, 6);
+
+            Assertions.assertEquals(expected, actual);
+        }
+    }
+
+    @Test
+    public void getLeastNumberOfCubes2() throws IOException {
+        try (BufferedReader reader = Utils.getBufferedReader("test/day2_first_2.txt")) {
+            Day2_2.Cubes actual = app2.getLeastNumberOfCubes(getLineWithoutGame(reader.readLine()));
+            Day2_2.Cubes expected = new Day2_2.Cubes(20, 13, 6);
 
             Assertions.assertEquals(expected, actual);
         }
