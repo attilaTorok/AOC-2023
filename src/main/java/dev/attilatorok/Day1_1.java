@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 //https://adventofcode.com/2023/day/1
-public class Day1 {
+public class Day1_1 {
 
     public static void main(final String[] args) {
     }
@@ -26,7 +26,7 @@ public class Day1 {
         return sum;
     }
 
-    public int findNumber(String string) {
+    private int findNumber(String string) {
         for (int i = 0; i < string.length(); i++) {
             if (Character.isDigit(string.charAt(i))) {
                 return Character.getNumericValue(string.charAt(i));

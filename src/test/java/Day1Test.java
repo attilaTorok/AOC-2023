@@ -1,10 +1,10 @@
-import dev.attilatorok.Day1;
+import dev.attilatorok.Day1_1;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class Day1Test {
 
-    private final Day1 app = new Day1();
+    private final Day1_1 app = new Day1_1();
 
     @Test
     public void testDay1_firstExample() {
