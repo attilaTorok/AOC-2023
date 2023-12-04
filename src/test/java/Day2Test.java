@@ -57,8 +57,8 @@ public class Day2Test {
     @Test
     public void getLeastNumberOfCubes1() throws IOException {
         try (BufferedReader reader = Utils.getBufferedReader("test/day2_first.txt")) {
-            Day2_2.Cubes actual = app2.getLeastNumberOfCubes(getLineWithoutGame(reader.readLine()));
-            Day2_2.Cubes expected = new Day2_2.Cubes(4, 2, 6);
+            Day2_2.Cube actual = app2.getLeastNumberOfCubes(getLineWithoutGame(reader.readLine()));
+            Day2_2.Cube expected = new Day2_2.Cube(4, 2, 6);
 
             Assertions.assertEquals(expected, actual);
         }
@@ -67,8 +67,8 @@ public class Day2Test {
     @Test
     public void getLeastNumberOfCubes2() throws IOException {
         try (BufferedReader reader = Utils.getBufferedReader("test/day2_first_2.txt")) {
-            Day2_2.Cubes actual = app2.getLeastNumberOfCubes(getLineWithoutGame(reader.readLine()));
-            Day2_2.Cubes expected = new Day2_2.Cubes(20, 13, 6);
+            Day2_2.Cube actual = app2.getLeastNumberOfCubes(getLineWithoutGame(reader.readLine()));
+            Day2_2.Cube expected = new Day2_2.Cube(20, 13, 6);
 
             Assertions.assertEquals(expected, actual);
         }
