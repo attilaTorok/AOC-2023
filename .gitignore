@@ -15,3 +15,6 @@ build/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+
+### Ignore inputs in December
+/src/main/resources/input
