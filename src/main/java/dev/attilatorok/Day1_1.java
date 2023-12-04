@@ -12,8 +12,9 @@ public class Day1_1 {
         try (BufferedReader reader = Utils.getBufferedReader(fileName)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                sum += findNumber(line) * 10;
-                sum += findNumber(new StringBuilder(line).reverse().toString());
+                sum += Character.getNumericValue(line.charAt(findNumberIndex(line))) * 10;
+                String reversedLine = new StringBuilder(line).reverse().toString();
+                sum += Character.getNumericValue(reversedLine.charAt(findNumberIndex(reversedLine)));
             }
 
         } catch (IOException exception) {
@@ -23,14 +24,14 @@ public class Day1_1 {
         return sum;
     }
 
-    private int findNumber(String string) {
+    protected int findNumberIndex(String string) {
         for (int i = 0; i < string.length(); i++) {
             if (Character.isDigit(string.charAt(i))) {
-                return Character.getNumericValue(string.charAt(i));
+                return i;
             }
         }
 
-        return 0;
+        return -1;
     }
 
 }
