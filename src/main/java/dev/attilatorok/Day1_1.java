@@ -6,9 +6,6 @@ import java.io.IOException;
 //https://adventofcode.com/2023/day/1
 public class Day1_1 {
 
-    public static void main(final String[] args) {
-    }
-
     public int getAnswer(String fileName) {
         int sum = 0;
 
