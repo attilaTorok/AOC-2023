@@ -75,10 +75,20 @@ public class Day2Test {
     }
 
     @Test
-    public void getPowerOfCubesInGames() throws IOException {
+    public void getPowerOfCubesInGamesTest() throws IOException {
         try (BufferedReader reader = Utils.getBufferedReader("test/day2_first_3.txt")) {
             int actual = app2.getPowerOfCubesInGames(reader);
             int expected = 2286;
+
+            Assertions.assertEquals(expected, actual);
+        }
+    }
+
+    @Test
+    public void getPowerOfCubesInGames() throws IOException {
+        try (BufferedReader reader = Utils.getBufferedReader("input/day2_first.txt")) {
+            int actual = app2.getPowerOfCubesInGames(reader);
+            int expected = 66016;
 
             Assertions.assertEquals(expected, actual);
         }

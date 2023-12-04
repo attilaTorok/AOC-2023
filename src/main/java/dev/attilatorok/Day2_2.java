@@ -1,6 +1,7 @@
 package dev.attilatorok;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class Day2_2 {
@@ -25,12 +26,23 @@ public class Day2_2 {
         return new Cube(red, green, blue);
     }
 
-    public int getPowerOfCubesInGames(BufferedReader reader) {
+    public int getPowerOfCubesInGames(BufferedReader reader) throws IOException {
         int sum = 0;
+        String line ;
+
+        while ((line = reader.readLine()) != null) {
+            sum += getLeastNumberOfCubes(line.split(":")[1]).getPower();
+        }
 
         return sum;
     }
 
-    public record Cube(int red, int green, int blue) {}
+    public record Cube(int red, int green, int blue) {
+
+        public int getPower() {
+            return red * green * blue;
+        }
+
+    }
 
 }
