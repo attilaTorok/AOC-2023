@@ -46,7 +46,7 @@ public class Day3Test {
     public void testGearRation() throws IOException {
         try (BufferedReader reader = Utils.getBufferedReader("test/day3_first.txt")) {
             int actual = app2.getGearRatio(reader);
-            int expected = 16345;
+            int expected = 467835;
 
             Assertions.assertEquals(expected, actual);
         }
@@ -56,7 +56,17 @@ public class Day3Test {
     public void testGearRation1() throws IOException {
         try (BufferedReader reader = Utils.getBufferedReader("test/day3_first_1.txt")) {
             int actual = app2.getGearRatio(reader);
-            int expected = 467835;
+            int expected = 16345;
+
+            Assertions.assertEquals(expected, actual);
+        }
+    }
+
+    @Test
+    public void inputPart2() throws IOException {
+        try (BufferedReader reader = Utils.getBufferedReader("input/day3_part1.txt")) {
+            int actual = app2.getGearRatio(reader);
+            int expected = 78826761;
 
             Assertions.assertEquals(expected, actual);
         }

@@ -10,15 +10,13 @@ public class Day3_1 {
 
     public int getPartSum(BufferedReader reader) throws IOException {
         int sum = 0;
-
-        String str;
-
         Line[] lines = new Line[3];
 
         lines[0] = readLine(reader.readLine());
         lines[1] = readLine(reader.readLine());
         sum += sumOfPartsInFirstLine(lines);
 
+        String str;
         while ((str = reader.readLine()) != null) {
             lines[2] = readLine(str);
 
@@ -31,7 +29,7 @@ public class Day3_1 {
         return sum;
     }
 
-    private Line readLine(String str) {
+    protected Line readLine(String str) {
         Line line = new Line();
         boolean isLastCharDigit = false;
 
@@ -59,7 +57,7 @@ public class Day3_1 {
         return line;
     }
 
-    private int sumOfPartsInFirstLine(Line[] lines) {
+    protected int sumOfPartsInFirstLine(Line[] lines) {
         int sum = 0;
         boolean isFound = false;
 
@@ -85,26 +83,26 @@ public class Day3_1 {
         return sum;
     }
 
-    private int sumOfPartInLine(Line[] lines) {
+    protected int sumOfPartInLine(Line[] lines) {
         int sum = 0;
         boolean isFound = false;
 
         for (Number number : lines[1].numbers) {
+            for (int symbolIndex : lines[0].symbols) {
+                if (symbolIndex >= number.startIndex - 1 && symbolIndex <= number.endIndex + 1) {
+                    sum += number.value;
+                    isFound = true;
+                    break;
+                }
+            }
+
             if (!isFound) {
-                for (int symbolIndex : lines[0].symbols) {
-                    if (symbolIndex >= number.startIndex - 1 && symbolIndex <= number.endIndex + 1) {
+                for (int symbolIndex : lines[1].symbols) {
+                    if (symbolIndex == number.startIndex - 1 || symbolIndex == number.endIndex + 1) {
                         sum += number.value;
                         isFound = true;
                         break;
                     }
-                }
-            }
-
-            for (int symbolIndex : lines[1].symbols) {
-                if (symbolIndex == number.startIndex - 1 || symbolIndex == number.endIndex + 1) {
-                    sum += number.value;
-                    isFound = true;
-                    break;
                 }
             }
 
@@ -123,7 +121,7 @@ public class Day3_1 {
         return sum;
     }
 
-    private int sumOfPartsInLastLine(Line[] lines) {
+    protected int sumOfPartsInLastLine(Line[] lines) {
         int sum = 0;
         boolean isFound = false;
 
@@ -150,7 +148,7 @@ public class Day3_1 {
         return sum;
     }
 
-    private void shiftLines(Line[] lines) {
+    protected void shiftLines(Line[] lines) {
         lines[0] = lines[1];
         lines[1] = lines[2];
         lines[2] = null;
@@ -212,6 +210,11 @@ public class Day3_1 {
         public void setEndIndex(int endIndex) {
             this.endIndex = endIndex;
         }
+
+        public boolean isCloseToSymbol(int symbolIndex) {
+            return symbolIndex >= startIndex - 1 && symbolIndex <= endIndex + 1;
+        }
+
     }
 
 }
