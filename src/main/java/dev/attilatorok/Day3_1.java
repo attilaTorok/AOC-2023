@@ -38,8 +38,8 @@ public class Day3_1 {
             if (Character.isDigit(currentChar)) {
                 if (isLastCharDigit) {
                     Number number = line.getLastNumber();
-                    number.value = number.value * 10 + Character.getNumericValue(currentChar);
-                    number.endIndex = i;
+                    number.setValue(number.getValue() * 10 + Character.getNumericValue(currentChar));
+                    number.setEndIndex(i);
                 } else {
                     isLastCharDigit = true;
                     Number number = new Number(Character.getNumericValue(currentChar), i);
@@ -47,7 +47,7 @@ public class Day3_1 {
                 }
 
             } else if (currentChar != '.') {
-                line.symbols.add(i);
+                line.addSymbol(i);
                 isLastCharDigit = false;
             } else {
                 isLastCharDigit = false;
@@ -61,18 +61,18 @@ public class Day3_1 {
         int sum = 0;
         boolean isFound = false;
 
-        for (Number number : lines[0].numbers) {
-            for (int symbolIndex : lines[0].symbols) {
-                if (symbolIndex == number.startIndex - 1 || symbolIndex == number.endIndex + 1) {
-                    sum += number.value;
+        for (Number number : lines[0].getNumbers()) {
+            for (int symbolIndex : lines[0].getSymbols()) {
+                if (number.isCloseToSymbol(symbolIndex)) {
+                    sum += number.getValue();
                     isFound = true;
                     break;
                 }
             }
             if (!isFound) {
-                for (int symbolIndex : lines[1].symbols) {
-                    if (symbolIndex >= number.startIndex - 1 && symbolIndex <= number.endIndex + 1) {
-                        sum += number.value;
+                for (int symbolIndex : lines[1].getSymbols()) {
+                    if (number.isCloseToSymbol(symbolIndex)) {
+                        sum += number.getValue();
                         break;
                     }
                 }
@@ -87,19 +87,19 @@ public class Day3_1 {
         int sum = 0;
         boolean isFound = false;
 
-        for (Number number : lines[1].numbers) {
-            for (int symbolIndex : lines[0].symbols) {
-                if (symbolIndex >= number.startIndex - 1 && symbolIndex <= number.endIndex + 1) {
-                    sum += number.value;
+        for (Number number : lines[1].getNumbers()) {
+            for (int symbolIndex : lines[0].getSymbols()) {
+                if (number.isCloseToSymbol(symbolIndex)) {
+                    sum += number.getValue();
                     isFound = true;
                     break;
                 }
             }
 
             if (!isFound) {
-                for (int symbolIndex : lines[1].symbols) {
-                    if (symbolIndex == number.startIndex - 1 || symbolIndex == number.endIndex + 1) {
-                        sum += number.value;
+                for (int symbolIndex : lines[1].getSymbols()) {
+                    if (number.isCloseToSymbol(symbolIndex)) {
+                        sum += number.getValue();
                         isFound = true;
                         break;
                     }
@@ -107,9 +107,9 @@ public class Day3_1 {
             }
 
             if (!isFound) {
-                for (int symbolIndex : lines[2].symbols) {
-                    if (symbolIndex >= number.startIndex - 1 && symbolIndex <= number.endIndex + 1) {
-                        sum += number.value;
+                for (int symbolIndex : lines[2].getSymbols()) {
+                    if (number.isCloseToSymbol(symbolIndex)) {
+                        sum += number.getValue();
                         break;
                     }
                 }
@@ -125,18 +125,18 @@ public class Day3_1 {
         int sum = 0;
         boolean isFound = false;
 
-        for (Number number : lines[1].numbers) {
-            for (int symbolIndex : lines[1].symbols) {
-                if (symbolIndex == number.startIndex - 1 || symbolIndex == number.endIndex + 1) {
-                    sum += number.value;
+        for (Number number : lines[1].getNumbers()) {
+            for (int symbolIndex : lines[1].getSymbols()) {
+                if (number.isCloseToSymbol(symbolIndex)) {
+                    sum += number.getValue();
                     isFound = true;
                     break;
                 }
             }
             if (!isFound) {
-                for (int symbolIndex : lines[0].symbols) {
-                    if (symbolIndex >= number.startIndex - 1 && symbolIndex <= number.endIndex + 1) {
-                        sum += number.value;
+                for (int symbolIndex : lines[0].getSymbols()) {
+                    if (number.isCloseToSymbol(symbolIndex)) {
+                        sum += number.getValue();
                         break;
                     }
                 }
@@ -154,7 +154,7 @@ public class Day3_1 {
         lines[2] = null;
     }
 
-    class Line {
+    static class Line {
         private final List<Number> numbers = new ArrayList<>();
         private final List<Integer> symbols = new ArrayList<>();
 
@@ -180,9 +180,9 @@ public class Day3_1 {
 
     }
 
-    class Number {
+    static class Number {
         private int value;
-        private int startIndex;
+        private final int startIndex;
         private int endIndex;
 
         public Number(int value, int index) {
@@ -197,14 +197,6 @@ public class Day3_1 {
 
         public void setValue(int value) {
             this.value = value;
-        }
-
-        public int getStartIndex() {
-            return startIndex;
-        }
-
-        public int getEndIndex() {
-            return endIndex;
         }
 
         public void setEndIndex(int endIndex) {
