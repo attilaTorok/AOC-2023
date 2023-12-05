@@ -13,7 +13,7 @@ public class Day3Test {
     @Test
     public void testPartSum() throws IOException {
         try (BufferedReader reader = Utils.getBufferedReader("test/day3_first.txt")) {
-            int actual = app1.getPartSum();
+            int actual = app1.getPartSum(reader);
             int expected = 4361;
 
             Assertions.assertEquals(expected, actual);
@@ -23,8 +23,18 @@ public class Day3Test {
     @Test
     public void testPartSum1() throws IOException {
         try (BufferedReader reader = Utils.getBufferedReader("test/day3_first_1.txt")) {
-            int actual = app1.getPartSum();
-            int expected = 467;
+            int actual = app1.getPartSum(reader);
+            int expected = 502;
+
+            Assertions.assertEquals(expected, actual);
+        }
+    }
+
+    @Test
+    public void inputPart1() throws IOException {
+        try (BufferedReader reader = Utils.getBufferedReader("input/day3_part1.txt")) {
+            int actual = app1.getPartSum(reader);
+            int expected = 533784;
 
             Assertions.assertEquals(expected, actual);
         }
