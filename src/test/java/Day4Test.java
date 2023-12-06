@@ -1,4 +1,5 @@
 import dev.attilatorok.Day4_1;
+import dev.attilatorok.Day4_2;
 import dev.attilatorok.Utils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import java.util.List;
 public class Day4Test {
 
     private final Day4_1 app1 = new Day4_1();
+    private final Day4_2 app2 = new Day4_2();
 
     @Test
     public void testPointsIn() {
@@ -33,6 +35,16 @@ public class Day4Test {
     public void inputTotalPoints() throws IOException {
         try (BufferedReader reader = Utils.getBufferedReader("input/day4_part1.txt")) {
             int actual = app1.totalPoints(reader);
+            int expected = 19855;
+
+            Assertions.assertEquals(expected, actual);
+        }
+    }
+
+    @Test
+    public void testTotalPointsWithCopies() throws IOException {
+        try (BufferedReader reader = Utils.getBufferedReader("input/day4_part1.txt")) {
+            int actual = app2.testTotalPointsWithCopies(reader);
             int expected = 19855;
 
             Assertions.assertEquals(expected, actual);
